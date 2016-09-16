@@ -1,0 +1,38 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+authserver:
+    hostname: localhost
+    port: 8899
+    contextPath: userauth
+
+spring:
+  oauth2:
+    resource: 
+      userInfoUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/me
+      preferTokenInfo: false 
+
+---
+# reef-webservice instance when used on Docker
+spring:
+  profiles: docker
+  
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.59.103:8761/eureka/
+      
+authserver:
+    hostname: 192.168.59.103
+    port: 8899
+    contextPath: userauth
+    
+server:
+  port: 8080

@@ -1,0 +1,1 @@
+# reefminder micro-service configuration files for use with the Spring Configuration Server

@@ -1,0 +1,27 @@
+server:
+  port: 8899
+  contextPath: /userauth 
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  data:
+    mongodb.host: localhost
+    mongodb.port: 12345
+    mongodb.uri: mongodb://localhost/auth
+    mongo.repositories.enabled: true
+
+---
+
+spring:
+  profiles: docker
+  
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.59.103:8761/eureka/
